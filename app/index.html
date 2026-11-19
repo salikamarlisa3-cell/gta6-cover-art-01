@@ -3,20 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Neon Vice Panels — GTA-style Cover Art Maker</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
   <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
+    <h1>Neon Vice <span>Panels</span></h1>
+    <p class="lede">An offline cover-art maker: panels, grades and a headline, straight from your photos.</p>
+
+    <h2>Layout</h2>
+    <div id="layouts" class="chips"></div>
+
+    <h2>Photo</h2>
+    <label class="file">Upload a photo <input id="photo" type="file" accept="image/*"></label>
+    <div id="samples" class="samples"></div>
+    <div class="row">
+      <button id="assign" type="button">Assign to panel</button>
+      <button id="fill" type="button">Fill all panels</button>
+    </div>
+    <label>Panel zoom <input id="zoom" type="range" min="1" max="3" step="0.01" value="1"></label>
+    <p class="hint">Click a panel to select it, drag on the canvas to reframe, scroll to zoom. Or drop a photo onto the poster.</p>
+
+    <h2>Caption</h2>
+    <label>Title <input id="title" type="text" maxlength="30" value="NEON VICE"></label>
+    <label>Tagline <input id="tagline" type="text" maxlength="48" value="every sunset has a price"></label>
+    <label>Title size <input id="titleSize" type="range" min="0.5" max="1.6" step="0.01" value="1"></label>
+    <label>Title height <input id="titleY" type="range" min="0.2" max="0.97" step="0.005" value="0.86"></label>
+
+    <h2>Grade</h2>
+    <div id="grades" class="chips"></div>
+
+    <h2>Export</h2>
+    <div class="row">
+      <select id="exportSize" aria-label="Export size">
+        <option value="1080x1080">1080 × 1080</option>
+        <option value="1080x1350">1080 × 1350</option>
+        <option value="1920x1080">1920 × 1080</option>
+      </select>
+      <button id="export" type="button">Export PNG</button>
+    </div>
     <p id="status" role="status"></p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="stage" id="stage">
+    <canvas id="cover" width="880" height="880" aria-label="Your cover art"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
